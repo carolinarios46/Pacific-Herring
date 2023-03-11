@@ -6,10 +6,12 @@ There is approx. 2 million years of divergence between Pacific and Atlantic Herr
 
 The Altantic Herring has 26 autosomes with a total size of 726 Mb
 
-## 0. directory set up
+## 0. directory/environment set up
 ```
-mkdir /share/dennislab/projects/pacific_herring/fastq
 cd /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021
+
+cd /share/dennislab/projects/pacific_herring/
+source /share/dennislab/programs/dennis-miniconda/etc/profile.d/conda.sh
 ```
 ## 1. HiFi reads QC
 ### 1.1 k-mer distance
@@ -29,9 +31,19 @@ cd /share/dennislab/projects/pacific_herring/samples_mash
 Convert HiFi bam files to fastq and evaluate for overall quality
 ```
 mkdir /share/dennislab/projects/pacific_herring/fastq
-cd /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/fastq
+cd /share/dennislab/projects/pacific_herring/fastq
+
 
 conda activate chifi
-bam2fasta -o  /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam
+bam2fasta -o m64069_210418_020829 /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam
 mash sketch -k 21 -s 10000 -r -m 1 -o m54333U_210606_014450.hifi_reads m54333U_210606_014450.hifi_reads.fasta.gz
+
+conda activate nanopore
+NanoPlot -t 10 --fastq m64069_210418_020829.fastq.gz --N50 -f png -o nanoplot_round1
+```
+## 2. Genome profiling
+```
+conda activate jellyfish
+
+
 
