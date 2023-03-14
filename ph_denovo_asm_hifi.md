@@ -35,14 +35,23 @@ cd /share/dennislab/projects/pacific_herring/fastq
 
 
 conda activate chifi
-bam2fasta -o herring_DNA /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam \ /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64202e_210514_194300.hifi_reads.bam
+bam2fasta -o herring_DNA \ /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam \ /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64202e_210514_194300.hifi_reads.bam
 
 conda activate nanopore
 NanoPlot -t 10 --fastq herring_DNA.fastq.gz --N50 -f png -o nanoplot_herring
 ```
+
 ## 2. Genome profiling
 ```
 conda activate jellyfish
+mkdir /share/dennislab/projects/pacfic_herring/denovo_asm
+mkdir /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifi
+cd /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifi
+
+jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projects/pacific_herring/fastq/herring_DNA.fastq.gz) -o herring_DNA.jf
+
+jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
+```
 
 
 
