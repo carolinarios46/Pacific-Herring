@@ -86,6 +86,7 @@ conda activate voles # hifiasm 0.18.5-r499
 hifiasm \
 -o herring_DNA.asm \
 --h1 /Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz \
+--h2 /Undetermined_Undetermined_H7Y75CCX2_L4_2.fq.gz \
 -t 64 \
 -l 1 \
 ../herring_hifi/fastq/herring_DNA.fastq.gz
