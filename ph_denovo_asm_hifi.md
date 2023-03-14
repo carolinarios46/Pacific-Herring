@@ -35,11 +35,10 @@ cd /share/dennislab/projects/pacific_herring/fastq
 
 
 conda activate chifi
-bam2fasta -o m64069_210418_020829 /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam
-mash sketch -k 21 -s 10000 -r -m 1 -o m54333U_210606_014450.hifi_reads m54333U_210606_014450.hifi_reads.fasta.gz
+bam2fasta -o herring_DNA /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam \ /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64202e_210514_194300.hifi_reads.bam
 
 conda activate nanopore
-NanoPlot -t 10 --fastq m64069_210418_020829.fastq.gz --N50 -f png -o nanoplot_round1
+NanoPlot -t 10 --fastq herring_DNA.fastq.gz --N50 -f png -o nanoplot_herring
 ```
 ## 2. Genome profiling
 ```
