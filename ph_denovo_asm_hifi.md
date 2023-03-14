@@ -30,7 +30,7 @@ cd /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/atlantic_herring
 ## retrieve atlantic herring genome
 curl -JLO [https://www.ncbi.nlm.nih.gov/assembly/GCF_000966335.1/#](https://www.ncbi.nlm.nih.gov/assembly/GCF_900700415.2#) -o GCF_000966335.fa.gz
 
-mkdir /share/dennislab/projects/pacfic_herring/denovo_asm
+mkdir /share/dennislab/projects/pacific_herring/denovo_asm
 mkdir /share/dennislab/projects/pacific_herring/denovo_asm/samples_mash
 cd /share/dennislab/projects/pacific_herring/samples_mash
 
