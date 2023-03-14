@@ -8,8 +8,14 @@ The Altantic Herring has 26 autosomes with a total size of 726 Mb
 
 ## 0. directory/environment set up
 ```
-cd /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021
+#These are the pacific herring HiFi reads
+/share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64069_210418_020829.hifi_reads.bam
+/share/dennislab-backedup/pacbio/pacific_herring/ph_genome/april19_2021/m64202e_210514_194300.hifi_reads.bam
 
+#These are the pacific herring Hi-C reads
+/share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz
+
+# setting up the conda environment
 cd /share/dennislab/projects/pacific_herring/
 source /share/dennislab/programs/dennis-miniconda/etc/profile.d/conda.sh
 ```
@@ -52,6 +58,25 @@ jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projec
 
 jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 ```
+### 3. De novo assembly
 
+```
+mkdir /share/dennislab/projects//pacfic_herring/denovo_asm/herring_hifiasm
+cd /share/dennislab/projects//pacfic_herring/denovo_asm/herring_hifiasm
+
+conda activate voles # hifiasm 0.18.5-r499
+
+hifiasm \
+-o herring_DNA.asm \
+--h1 /Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz \
+-t 64 \
+-l 1 \
+../01_meadow_hifi/fastq/Vole_liver_DNA_880000.fastq.gz
+# --purge-max 
+
+awk '/^S/{print ">"$2;print $3}' Vole_liver_DNA_880000.asm.hic.p_ctg.gfa > Vole_liver_DNA_880000.asm.hic.p_ctg.fa
+awk '/^S/{print ">"$2;print $3}' Vole_liver_DNA_880000.asm.hic.hap1.p_ctg.gfa > Vole_liver_DNA_880000.asm.hic.hap1.p_ctg.fa
+awk '/^S/{print ">"$2;print $3}' Vole_liver_DNA_880000.asm.hic.hap2.p_ctg.gfa > Vole_liver_DNA_880000.asm.hic.hap2.p_ctg.fa
+```
 
 
