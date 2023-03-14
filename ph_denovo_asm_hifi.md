@@ -14,6 +14,9 @@ The Altantic Herring has 26 autosomes with a total size of 726 Mb
 
 #These are the pacific herring Hi-C reads
 /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz
+/share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_2.fq.gz
+/share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_1.fq.gz
+/share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_2.fq.gz
 
 # setting up the conda environment
 cd /share/dennislab/projects/pacific_herring/
