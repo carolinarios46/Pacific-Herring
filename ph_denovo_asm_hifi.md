@@ -81,12 +81,16 @@ jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 
-conda activate voles # hifiasm 0.18.5-r499
+cat /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_1.fq.gz > /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz
+
+cat /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_2.fq.gz /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_2.fq.gz > /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz
+
+conda activate hifiasm-latest # hifiasm 0.18.5-r499
 
 hifiasm \
 -o herring_DNA.asm \
---h1 /Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz \
---h2 /Undetermined_Undetermined_H7Y75CCX2_L4_2.fq.gz \
+--h1 /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz \
+--h2 /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz \
 -t 64 \
 -l 1 \
 ../herring_hifi/fastq/herring_DNA.fastq.gz
