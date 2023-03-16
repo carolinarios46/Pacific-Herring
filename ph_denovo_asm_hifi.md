@@ -68,8 +68,8 @@ NanoPlot -t 10 --fastq herring_DNA.fastq.gz --N50 -f png -o nanoplot_herring
 ## 2. Genome profiling
 ```
 conda activate jellyfish
-mkdir /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifi
-cd /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifi
+mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi
 
 jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi/fastq/herring_DNA.fastq.gz) -o herring_DNA.jf
 
@@ -78,8 +78,8 @@ jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 ### 3. De novo assembly
 
 ```
-mkdir /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifiasm
-cd /share/dennislab/projects/pacfic_herring/denovo_asm/herring_hifiasm
+mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 
 conda activate voles # hifiasm 0.18.5-r499
 
