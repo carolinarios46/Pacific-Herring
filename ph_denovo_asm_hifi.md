@@ -75,8 +75,9 @@ jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projec
 
 jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 ```
-### 3. De novo assembly
+## 3. De novo assembly
 
+### 3.1 Hifiasm
 ```
 mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
@@ -99,4 +100,14 @@ hifiasm \
 awk '/^S/{print ">"$2;print $3}' herring_DNA.asm.hic.p_ctg.gfa > herring_DNA.asm.hic.p_ctg.fa
 awk '/^S/{print ">"$2;print $3}' herring_DNA.asm.hic.hap1.p_ctg.gfa > herring_DNA.asm.hic.hap1.p_ctg.fa
 awk '/^S/{print ">"$2;print $3}' herring_DNA.asm.hic.hap2.p_ctg.gfa > herring_DNA.asm.hic.hap2.p_ctg.fa
+```
+### 3.2 Draft assembly evaluation
+```
+conda activate quast
+
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
+
+quast --threads 32 herring_DNA.asm.hic.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_primary
+quast --threads 32 herring_DNA.asm.hic.hap1.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap1
+quast --threads 32 herring_DNA.asm.hic.hap2.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap2
 ```
