@@ -102,6 +102,7 @@ awk '/^S/{print ">"$2;print $3}' herring_DNA.asm.hic.hap1.p_ctg.gfa > herring_DN
 awk '/^S/{print ">"$2;print $3}' herring_DNA.asm.hic.hap2.p_ctg.gfa > herring_DNA.asm.hic.hap2.p_ctg.fa
 ```
 ### 3.2 Draft assembly evaluation
+contiguity
 ```
 conda activate quast
 
@@ -111,3 +112,16 @@ quast --threads 32 herring_DNA.asm.hic.p_ctg.gfa --est-ref-size 2051817670 -o ou
 quast --threads 32 herring_DNA.asm.hic.hap1.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap1
 quast --threads 32 herring_DNA.asm.hic.hap2.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap2
 ```
+completeness
+```
+conda activate busco
+
+cd /share/dennislab/projects/vole/denovo_asm/03_meadow_hifiasm
+busco -c 32 -i herring_DNA.asm.hic.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_primary
+busco -c 32 -i herring_DNA.asm.hic.hap1.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap1
+busco -c 32 -i herring_DNA.asm.hic.hap2.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap2
+```
+correctness
+'''
+
+'''
