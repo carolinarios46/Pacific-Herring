@@ -75,6 +75,7 @@ jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projec
 
 jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 ```
+Histograms uploaded here: http://qb.cshl.edu/genomescope/genomescope2.0/
 ## 3. De novo assembly
 
 ### 3.1 Hifiasm
@@ -108,20 +109,27 @@ conda activate quast
 
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 
-quast --threads 32 herring_DNA.asm.hic.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_primary
-quast --threads 32 herring_DNA.asm.hic.hap1.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap1
-quast --threads 32 herring_DNA.asm.hic.hap2.p_ctg.gfa --est-ref-size 2051817670 -o output_quast_hap2
+quast --threads 32 herring_DNA.asm.hic.p_ctg.fa --est-ref-size 2051817670 -o output_quast_primary
+quast --threads 32 herring_DNA.asm.hic.hap1.p_ctg.fa --est-ref-size 2051817670 -o output_quast_hap1
+quast --threads 32 herring_DNA.asm.hic.hap2.p_ctg.fa --est-ref-size 2051817670 -o output_quast_hap2
 ```
 completeness
 ```
 conda activate busco
 
-cd /share/dennislab/projects/vole/denovo_asm/03_meadow_hifiasm
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
+
 busco -c 32 -i herring_DNA.asm.hic.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_primary
 busco -c 32 -i herring_DNA.asm.hic.hap1.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap1
 busco -c 32 -i herring_DNA.asm.hic.hap2.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap2
 ```
 correctness
-'''
+```
+export PATH=/share/dennislab/programs/meryl-1.0/Linux-amd64/bin:$PATH
+export MERQURY=/share/dennislab/programs/merqury
+sh $MERQURY/best_k.sh 2000000000 # Best k-mer size ~20
 
-'''
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
+
+
+```
