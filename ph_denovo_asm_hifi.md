@@ -22,7 +22,7 @@ The Altantic Herring has 26 autosomes with a total size of 726 Mb
 cd /share/dennislab/projects/pacific_herring/
 source /share/dennislab/programs/dennis-miniconda/etc/profile.d/conda.sh
 ```
-## 1. HiFi reads QC
+## 1. HiFi and Hi-C reads QC
 ### 1.1 k-mer distance
 ```
 mkdir /share/dennislab-backedup/pacbio/pacific_herring/ph_genome/atlantic_herring
@@ -64,11 +64,21 @@ bam2fastq -o herring_DNA \
 conda activate nanoplot
 NanoPlot -t 10 --fastq herring_DNA.fastq.gz --N50 -f png -o nanoplot_herring
 ```
+### 1.3 Fastqc
+Evaluate Hi-C reads for overall quality
+```
+mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hic
+mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hic/fastqc
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hic/fastqc
 
+conda activate fastqc #v0.12.1
+
+vo
+```
 ## 2. Genome profiling
 ```
 conda activate jellyfish
-mkdir /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi
+
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi
 
 jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi/fastq/herring_DNA.fastq.gz) -o herring_DNA.jf
