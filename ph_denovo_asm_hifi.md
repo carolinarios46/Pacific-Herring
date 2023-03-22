@@ -115,7 +115,7 @@ quast --threads 32 herring_DNA.asm.hic.hap2.p_ctg.fa --est-ref-size 2051817670 -
 ```
 completeness
 ```
-conda activate busco
+conda activate busco #v5.4.4
 
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 
