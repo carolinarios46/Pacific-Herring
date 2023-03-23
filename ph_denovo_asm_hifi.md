@@ -73,7 +73,10 @@ cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hic/fastqc
 
 conda activate fastqc #v0.12.1
 
-vo
+fastqc /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_1.fq.gz
+fastqc /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_2.fq.gz
+fastqc /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_1.fq.gz
+fastqc /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L5_2.fq.gz
 ```
 ## 2. Genome profiling
 ```
