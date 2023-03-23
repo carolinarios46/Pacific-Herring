@@ -132,6 +132,10 @@ cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm
 busco -c 32 -i herring_DNA.asm.hic.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_primary
 busco -c 32 -i herring_DNA.asm.hic.hap1.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap1
 busco -c 32 -i herring_DNA.asm.hic.hap2.p_ctg.fa -l eukaryota_odb10 -m geno --out output_busco_hap2
+
+busco -c 32 -i herring_DNA.asm.hic.p_ctg.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_primary
+busco -c 32 -i herring_DNA.asm.hic.hap1.p_ctg.fa -l actinopterygii_odb10 -m geno --out output_actinopterygii_busco_hap1
+busco -c 32 -i herring_DNA.asm.hic.hap2.p_ctg.fa -l actinopterygii_odb10 -m geno --out output_actinopterygii_busco_hap2
 ```
 correctness
 ```
