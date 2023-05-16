@@ -162,7 +162,7 @@ meryl k=20 count output read2.meryl /share/dennislab/users/jagill/shortread2020/
 meryl union-sum output illumina.meryl read*.meryl
 
 ln -s $MERQURY/merqury.sh # Link merqury
-./merqury.sh /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/output_meryl_primary/illumina.meryl /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
+./merqury.sh /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/output_meryl_primary/illumina.meryl /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa meryloutput
 ```
 
 ## 4. Duplication Purging
@@ -174,13 +174,12 @@ cd /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups
 
 cd /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary
 
-# Mapping HiFi reads to primary assembly using Minimap2
+# Mapping HiFi reads to primary assembly using Minimap2 # version 2.17
 minimap2 -t 32 -xasm20 /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi/fastq/herring_DNA.fastq.gz | gzip -c - > herring_DNA.toPrimary.paf.gz
 
 # Calculate coverage cutoff, base-level read depth, and create read depth histogram for PacBio data (calcuts+pbcstats)
 # PBCSTAT base coverage: contains the base-level coverage information
 # Calcuts-cutoff: incldues the thresholds calculated by purge dups
 # Histogram plot
-pbcstat herring_DNA.toPrimary.paf.gz # produces PB.base.cov and PB.stat files
-calcuts.log
+pbcstat herring_DNA.toPrimary.paf.gz # produces PB.base.cov and PB.stat files calcuts.log
 ```
