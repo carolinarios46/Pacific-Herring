@@ -89,6 +89,9 @@ jellyfish count -C -m 21 -s 1000000000 -t 10 <(gunzip -c /share/dennislab/projec
 jellyfish histo -t 10 herring_DNA.jf > herring_DNA.histo
 ```
 Histograms uploaded here: http://qb.cshl.edu/genomescope/genomescope2.0/
+
+Output here: http://genomescope.org/genomescope2.0/analysis.php?code=mBBh0hGmHtxqWwFp5hkP
+
 ## 3. De novo assembly
 
 ### 3.1 Hifiasm
