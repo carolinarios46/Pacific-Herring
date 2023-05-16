@@ -148,14 +148,16 @@ sh $MERQURY/best_k.sh 2000000000 # Best k-mer size ~20
 
 cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/output_meryl_primary
 
+# we also have assembly from 10x assembly: phgenome_ncbi.fasta
+
 # Illumina fastqs: /share/dennislab/users/jagill/shortread2020
 
 meryl k=$k count *.fastq.gz output .meryl
 
-meryl k=20 count output read1.meryl PH_BR_CKDL190143414-1a-D707-AK1545_H725HCCX2_L4_R1_paired.fq.gz
-meryl k=20 count output read2.meryl PH_BR_CKDL190143414-1a-D707-AK1545_H725HCCX2_L4_R2_paired.fq.gz
+meryl k=20 count output read1.meryl /share/dennislab/users/jagill/shortread2020/PH_BR_CKDL190143414-1a-D707-AK1545_H725HCCX2_L4_R1_paired.fq.gz
+meryl k=20 count output read2.meryl /share/dennislab/users/jagill/shortread2020/PH_BR_CKDL190143414-1a-D707-AK1545_H725HCCX2_L4_R2_paired.fq.gz
 meryl union-sum output illumina.meryl read*.meryl
 
 ln -s $MERQURY/merqury.sh # Link merqury
-./merqury.sh /share/dennislab/users/dcsoto/ms_asm/0_illumina/illumina.meryl /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
+./merqury.sh /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/output_meryl_primary/illumina.meryl /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
 ```
