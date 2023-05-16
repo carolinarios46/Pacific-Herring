@@ -182,4 +182,53 @@ minimap2 -t 32 -xasm20 /share/dennislab/projects/pacific_herring/denovo_asm/herr
 # Calcuts-cutoff: incldues the thresholds calculated by purge dups
 # Histogram plot
 pbcstat herring_DNA.toPrimary.paf.gz # produces PB.base.cov and PB.stat files calcuts.log
+
+# Segment draft assembly into contigs by cutting at blocks of Ns, and use minimap2 to generate an all by all self-alignment
+split_fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa > herring_DNA.asm.hic.p_ctg.fa.split
+minimap2 -t 32 -xasm5 -DP herring_DNA.asm.hic.p_ctg.fa.split herring_DNA.asm.hic.p_ctg.fa.split | gzip -c - > herring_DNA.asm.hic.p_ctg.fa.split.self.paf.gz
+
+# Use the self alignments and the cutoffs for identifying the haplotypic duplications. 
+# This command will only remove haplotypic duplicaitons at the ends of the contigs.
+# If you also want to remove the duplications in the middle, please remove -e option at your own risk,
+# It may delete false duplicaitons
+purge_dups -2 -T cutoffs -c PB.base.cov herring_DNA.asm.hic.p_ctg.fa.split.self.paf.gz > dups.bed 2> purge_dups.log
+get_seqs -e dups.bed /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
+
+# Evaluation
+conda activate quast
+quast --threads 32 purged.fa --est-ref-size 506212431 -o output_quast_purged
+conda activate busco
+busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out_busco_eukaryota_purged
+busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged 
+
+## Haplotype 1
+
+cd /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/hap1
+
+# Mapping HiFi reads to primary assembly using Minimap2 # version 2.17
+minimap2 -t 32 -xasm20 /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.hap1.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifi/fastq/herring_DNA.fastq.gz | gzip -c - > herring_DNA.toHap1.paf.gz
+
+# Calculate coverage cutoff, base-level read depth, and create read depth histogram for PacBio data (calcuts+pbcstats)
+# PBCSTAT base coverage: contains the base-level coverage information
+# Calcuts-cutoff: incldues the thresholds calculated by purge dups
+# Histogram plot
+pbcstat herring_DNA.toHap1.paf.gz # produces PB.base.cov and PB.stat files calcuts.log
+
+# Segment draft assembly into contigs by cutting at blocks of Ns, and use minimap2 to generate an all by all self-alignment
+split_fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.hap1.p_ctg.fa > herring_DNA.asm.hic.hap1.p_ctg.fa.split
+minimap2 -t 32 -xasm5 -DP herring_DNA.asm.hic.hap1.p_ctg.fa.split herring_DNA.asm.hic.hap1.p_ctg.fa.split | gzip -c - > herring_DNA.asm.hic.hap1.p_ctg.fa.split.self.paf.gz
+
+# Use the self alignments and the cutoffs for identifying the haplotypic duplications. 
+# This command will only remove haplotypic duplicaitons at the ends of the contigs.
+# If you also want to remove the duplications in the middle, please remove -e option at your own risk,
+# It may delete false duplicaitons
+purge_dups -2 -T cutoffs -c PB.base.cov herring_DNA.asm.hic.p_ctg.fa.split.self.paf.gz > dups.bed 2> purge_dups.log
+get_seqs -e dups.bed /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
+
+# Evaluation
+conda activate quast
+quast --threads 32 purged.fa --est-ref-size 506212431 -o output_quast_purged
+conda activate busco
+busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out_busco_eukaryota_purged
+busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged 
 ```
