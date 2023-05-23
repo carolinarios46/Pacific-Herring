@@ -165,6 +165,7 @@ ln -s $MERQURY/merqury.sh # Link merqury
 ./merqury.sh /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/output_meryl_primary/illumina.meryl /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa meryloutput
 
 ## Use nucmer and dnadiff to do an assembly-to-assembly comparison
+
 module load mummer/4.0.0rc1
 nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/nucmer/phgenome_ncbi.fasta
 dnadiff -d output.delta -p output.dnadiff
