@@ -247,6 +247,6 @@ get_seqs -e dups.bed /share/dennislab/projects/pacific_herring/denovo_asm/herrin
 conda activate quast
 quast --threads 32 purged.fa --est-ref-size 506212431 -o output_quast_purged
 conda activate busco
-busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out_busco_eukaryota_purged
+busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out output_busco_eukaryota_purged
 busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged 
 ```
