@@ -169,6 +169,18 @@ ln -s $MERQURY/merqury.sh # Link merqury
 module load mummer/4.0.0rc1
 nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/nucmer/phgenome_ncbi.fasta
 dnadiff -d output.delta -p output.dnadiff
+
+## Check for contamination
+cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/kraken2
+
+module load kraken2/2.1.2
+
+kraken2 \
+--db k2_pluspfp_20230314.tar.gz \
+--threads 10 \
+--output assembly-kraken2-out.txt \
+--report assembly-kraken2-report.txt \
+/share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa 
 ```
 
 ## 4. Duplication Purging
