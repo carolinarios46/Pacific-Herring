@@ -176,11 +176,30 @@ cd /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/kraken2
 module load kraken2/2.1.2
 
 kraken2 \
---db k2_pluspfp_20230314.tar.gz \
+--db db \
 --threads 10 \
 --output assembly-kraken2-out.txt \
 --report assembly-kraken2-report.txt \
 /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa 
+
+# create atlantic herring database
+
+# mkdir atlanticDB
+
+kraken2-build --download-taxonomy --db atlanticDB
+kraken2-build --download-library archaea --db atlanticDB
+kraken2-build --download-library bacteria --db atlanticDB
+kraken2-build --download-library plasmid --db atlanticDB
+kraken2-build --download-library viral --db atlanticDB
+kraken2-build --download-library human --db atlanticDB
+kraken2-build --download-library fungi --db atlanticDB
+kraken2-build --download-library plant --db atlanticDB
+kraken2-build --download-library protozoa --db atlanticDB
+kraken2-build --download-library UniVec_Core --db atlanticDB
+kraken2-build --add-to-library --db atlanticherring/GCF_900700415.2_Ch_v2.0.2_genomic.fna.gz atlanticDB
+
+
+7950
 ```
 
 ## 4. Duplication Purging
