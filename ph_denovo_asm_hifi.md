@@ -197,6 +197,8 @@ kraken2-build --download-library plant --db atlanticDB
 kraken2-build --download-library protozoa --db atlanticDB
 kraken2-build --download-library UniVec_Core --db atlanticDB
 kraken2-build --add-to-library --db atlanticherring/GCF_900700415.2_Ch_v2.0.2_genomic.fna.gz atlanticDB
+kraken2-build --build --db atlanticDB
+
 
 
 7950
