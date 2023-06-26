@@ -197,9 +197,16 @@ kraken2-build --download-library plant --db atlanticDB
 kraken2-build --download-library protozoa --db atlanticDB
 kraken2-build --download-library UniVec_Core --db atlanticDB
 kraken2-build --add-to-library --db atlanticherring/GCF_900700415.2_Ch_v2.0.2_genomic.fna.gz atlanticDB
-kraken2-build --build --db atlanticDB
+kraken2-build --build --db ./atlanticDB
 
+module load kraken2/2.1.2
 
+kraken2 \
+--db atlanticDB \
+--threads 10 \
+--output assembly-ah-kraken2-out.txt \
+--report assembly-ah-kraken2-report.txt \
+/share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa
 
 7950
 ```
