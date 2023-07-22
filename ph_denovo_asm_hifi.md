@@ -248,7 +248,7 @@ busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_acti
 ## Use nucmer and dnadiff to do an assembly-to-assembly comparison
 
 module load mummer/4.0.0rc1
-nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa
+nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/nucmer/phgenome_ncbi.fasta
 dnadiff -d output.delta -p output.dnadiff
 
 ## Haplotype 1
@@ -285,6 +285,6 @@ busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_acti
 ## Use nucmer and dnadiff to do an assembly-to-assembly comparison
 
 module load mummer/4.0.0rc1
-nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/hap1/purged.fa
+nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/hap1/purged.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/nucmer/phgenome_ncbi.fasta
 dnadiff -d output.delta -p output.dnadiff
 ```
