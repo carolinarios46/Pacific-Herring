@@ -243,7 +243,13 @@ conda activate quast
 quast --threads 32 purged.fa --est-ref-size 506212431 -o output_quast_purged
 conda activate busco
 busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out output_busco_eukaryota_purged
-busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged 
+busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged
+
+## Use nucmer and dnadiff to do an assembly-to-assembly comparison
+
+module load mummer/4.0.0rc1
+nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa
+dnadiff -d output.delta -p output.dnadiff
 
 ## Haplotype 1
 
@@ -274,5 +280,11 @@ conda activate quast
 quast --threads 32 purged.fa --est-ref-size 506212431 -o output_quast_purged
 conda activate busco
 busco -c 32 -i purged.fa -l eukaryota_odb10 -m geno --out output_busco_eukaryota_purged
-busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged 
+busco -c 32 -i purged.fa -l actinopterygii_odb10 -m geno --out output_busco_actinopterygii_purged
+
+## Use nucmer and dnadiff to do an assembly-to-assembly comparison
+
+module load mummer/4.0.0rc1
+nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/herring_DNA.asm.hic.p_ctg.fa /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/hap1/purged.fa
+dnadiff -d output.delta -p output.dnadiff
 ```
