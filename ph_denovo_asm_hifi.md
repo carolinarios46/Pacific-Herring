@@ -301,8 +301,4 @@ chmod +x nextflow
 
 #use nextflow to create conda environment with chromap and yahs
 -profile conda
-
-
-
-
-
+```
