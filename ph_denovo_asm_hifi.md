@@ -288,3 +288,21 @@ module load mummer/4.0.0rc1
 nucmer -t 60 -l 100 -c 500 -p output /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/hap1/purged.fa /share/dennislab/projects/pacific_herring/denovo_asm/herring_hifiasm/nucmer/phgenome_ncbi.fasta
 dnadiff -d output.delta -p output.dnadiff
 ```
+## 5. Scaffolding
+
+Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
+
+```
+cd /share/dennislab/projects/pacific_herring/denovo_asm/yahs
+
+#install nextflow in path
+curl -s https://get.nextflow.io | bash
+chmod +x nextflow
+
+#use nextflow to create conda environment with chromap and yahs
+-profile conda
+
+
+
+
+
