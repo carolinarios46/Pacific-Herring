@@ -306,7 +306,7 @@ wget https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tool
 #run nextflow
 ./nextflow run WarrenLab/hic-scaffolding-nf \
     -profile conda \
-    --juicer-tools-jar ./JuicerTools \
+    --juicer-tools-jar /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/JuicerTools/juicer_tools.2.20.00.jar \
     --contigs /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa \
     --r1Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz \
     --r2Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz
