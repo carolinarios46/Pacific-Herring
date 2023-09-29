@@ -299,14 +299,14 @@ cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold
 curl -s https://get.nextflow.io | bash
 chmod +x nextflow
 
-#use nextflow to create conda environment with chromap and yahs
--profile conda
-
 #install JuicerTools
+cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/JuicerTools
 curl https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar
 
 #run nextflow
-nextflow run WarrenLab/hic-scaffolding-nf \
+./nextflow run WarrenLab/hic-scaffolding-nf \
+    -profile conda \
+    --juicer-tools-jar ./JuicerTools \
     --contigs /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa \
     --r1Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz \
     --r2Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz
