@@ -301,7 +301,7 @@ chmod +x nextflow
 
 #install JuicerTools
 cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/JuicerTools
-curl https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar
+wget https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar
 
 #run nextflow
 ./nextflow run WarrenLab/hic-scaffolding-nf \
