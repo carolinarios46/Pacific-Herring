@@ -293,7 +293,7 @@ dnadiff -d output.delta -p output.dnadiff
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
 
 ```
-cd /share/dennislab/projects/pacific_herring/denovo_asm/yahs
+cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold
 
 #install nextflow in path
 curl -s https://get.nextflow.io | bash
@@ -301,4 +301,13 @@ chmod +x nextflow
 
 #use nextflow to create conda environment with chromap and yahs
 -profile conda
+
+#install JuicerTools
+curl https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar
+
+#run nextflow
+nextflow run WarrenLab/hic-scaffolding-nf \
+    --contigs /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa \
+    --r1Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz \
+    --r2Reads /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz
 ```
