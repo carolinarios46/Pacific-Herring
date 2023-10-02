@@ -290,6 +290,12 @@ dnadiff -d output.delta -p output.dnadiff
 ```
 ## 5. Scaffolding
 
+Attempt pre-processing of Hi-C data using Arima Genomics Mapping Pipeline
+
+```
+
+```
+
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
 
 ```
