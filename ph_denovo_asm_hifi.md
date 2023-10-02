@@ -293,7 +293,8 @@ dnadiff -d output.delta -p output.dnadiff
 Attempt pre-processing of Hi-C data using Arima Genomics Mapping Pipeline
 
 ```
-
+cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping
+git clone https://github.com/ArimaGenomics/mapping_pipeline.git
 ```
 
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
