@@ -296,12 +296,21 @@ Attempt pre-processing of Hi-C data using Arima Genomics Mapping Pipeline
 cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping
 git clone https://github.com/ArimaGenomics/mapping_pipeline.git
 
+conda create -n hic_mapping bwa samtools picardtools
+conda activate hic_mapping
+
+#directory set up
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/temp
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/paired_bams
-mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/dedup
-mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/merged_alignments
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/dedup
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/merged_alignments
+
+#generate BWA files
+bwa index -a bwtsw -p  ph_index /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa
+
+
 ```
 
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
