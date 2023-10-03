@@ -295,6 +295,13 @@ Attempt pre-processing of Hi-C data using Arima Genomics Mapping Pipeline
 ```
 cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping
 git clone https://github.com/ArimaGenomics/mapping_pipeline.git
+
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/temp
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/paired_bams
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/dedup
+mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/merged_alignments
 ```
 
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
