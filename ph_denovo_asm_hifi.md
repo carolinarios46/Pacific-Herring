@@ -307,10 +307,20 @@ mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mappi
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/dedup
 mkdir -p /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/merged_alignments
 
-#generate BWA files
+#Step 0: index reference
 bwa index -a bwtsw -p  ph_index /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa
 
+#Step 1.A: FASTQ to BAM (1st)
+bwa mem -t 12 /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.fq.gz | samtools view -@ 12 -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam
 
+#Step 1.B: FASTQ to BAM (2nd)
+bwa mem -t 12 /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/primary/purged.fa /share/dennislab-backedup/illumina/pacific_herring/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.fq.gz | samtools view -@ 12 -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam
+
+#Step 2.A: Filter 5' end (1st)
+samtools view -h /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam | perl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/mapping_pipeline/filter_five_end.pl | samtools view -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam
+
+#Step 2.A: Filter 5' end (2nd)
+samtools view -h /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam | perl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/mapping_pipeline/filter_five_end.pl | samtools view -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam
 ```
 
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
