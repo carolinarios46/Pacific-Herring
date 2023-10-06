@@ -296,7 +296,7 @@ Attempt pre-processing of Hi-C data using Arima Genomics Mapping Pipeline
 cd /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping
 git clone https://github.com/ArimaGenomics/mapping_pipeline.git
 
-conda create -n hic_mapping bwa samtools picardtools
+conda create -n hic_mapping -c bioconda bwa samtools picard
 conda activate hic_mapping
 
 #directory set up
@@ -319,8 +319,14 @@ bwa mem -t 12 /share/dennislab/projects/pacific_herring/denovo_asm/purge_dups/pr
 #Step 2.A: Filter 5' end (1st)
 samtools view -h /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam | perl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/mapping_pipeline/filter_five_end.pl | samtools view -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam
 
-#Step 2.A: Filter 5' end (2nd)
+#Step 2.B: Filter 5' end (2nd)
 samtools view -h /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam | perl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/mapping_pipeline/filter_five_end.pl | samtools view -Sb - > /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam
+
+#Step 3.A: Pair reads & mapping quality filter
+perl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/mapping_pipeline/two_read_bam_combiner.pl /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_1.bam /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/filtered_bams/Undetermined_Undetermined_H7Y75CCX2_L4_L5_2.bam samtools 10 | samtools view -bS -t $FAIDX(replace) - | samtools sort -@ 12 -o /share/dennislab/projects/pacific_herring/denovo_asm/scaffold/hic_mapping/output/temp/Undetermined_Undetermined_H7Y75CCX2_L4_L5.bam -
+
+#Step 3.B: Add read group
+java -Xmx4G -Djava.io.tmpdir=temp/ -jar 
 ```
 
 Attempt scaffolding using [Warren Lab Nextflow scaffolding pipeline](https://github.com/WarrenLab/hic-scaffolding-nf)
